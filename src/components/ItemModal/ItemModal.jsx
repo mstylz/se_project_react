@@ -29,9 +29,12 @@ function ItemModal({ activeModal, onClose, card }) {
   return (
     <div className="modal modal_opened" onMouseDown={handleOverlay}>
       <div className="modal__content modal__content_type_image">
-        <button className="modal__close-button" type="button" onClick={onClose}>
-          Close
-        </button>
+     <button
+       className="modal__close-button"
+       type="button"
+       aria-label="Close preview"
+       onClick={onClose}
+      />
         <img
           className="modal__image"
           src={card?.link || ""}
