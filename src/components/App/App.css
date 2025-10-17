@@ -1,16 +1,16 @@
 html,
 body {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 .page {
-    background-color: #f3f3f3;
+  background-color: #f3f3f3;
 }
 
 .page__content {
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 28px;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 28px;
+  box-sizing: border-box;
 }

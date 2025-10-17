@@ -34,7 +34,6 @@ function WeatherCard({ weatherData }) {
 
   var condition = normalizeCondition(raw);
 
-  
   function buildIconUrl(dayBool, cond) {
     if (!cond) return null;
     var folder = dayBool ? "day" : "night";
@@ -64,23 +63,21 @@ function WeatherCard({ weatherData }) {
       ? weatherData.temperature.F
       : "—";
 
-   return ( <
-        section className = "weather-card" >
-        <
-        p className = "weather-card__temp" > { `${tempF}° F` } < /p> <
-        img src = { src }
-        alt = { `card showing ${isDay ? "day" : "night"}time ${condition || "default"} weather` }
-        className = "weather-card__image"
-        onError = {
-            (e) => {
-                // If anything 404s, fall back to the correct day/night default
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = defaultUrl;
-            }
-        }
-        /> <
-        /section>
-    );
+  return (
+    <section className="weather-card">
+      <p className="weather-card__temp"> {`${tempF}° F`} </p>{" "}
+      <img
+        src={src}
+        alt={`card showing ${isDay ? "day" : "night"}time ${condition || "default"} weather`}
+        className="weather-card__image"
+        onError={(e) => {
+          // If anything 404s, fall back to the correct day/night default
+          e.currentTarget.onerror = null;
+          e.currentTarget.src = defaultUrl;
+        }}
+      />{" "}
+    </section>
+  );
 }
 
 export default WeatherCard;

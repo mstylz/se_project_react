@@ -4,7 +4,8 @@ import { defaultClothingItems } from "../../utils/constants";
 import "./Main.css";
 
 function Main({ weatherData, handleCardClick, items }) {
-  const source = Array.isArray(items) && items.length ? items : defaultClothingItems;
+  const source =
+    Array.isArray(items) && items.length ? items : defaultClothingItems;
   const visible = source.filter((item) => item.weather === weatherData.type);
 
   return (

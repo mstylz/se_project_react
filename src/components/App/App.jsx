@@ -113,7 +113,10 @@ function App() {
             />
             <span className="modal__radio-label">Hot</span>
           </label>
-          <label htmlFor="warm" className="modal__label modal__label_type_radio">
+          <label
+            htmlFor="warm"
+            className="modal__label modal__label_type_radio"
+          >
             <input
               className="modal__radio-input"
               type="radio"
@@ -123,7 +126,10 @@ function App() {
             />
             <span className="modal__radio-label">Warm</span>
           </label>
-          <label htmlFor="cold" className="modal__label modal__label_type_radio">
+          <label
+            htmlFor="cold"
+            className="modal__label modal__label_type_radio"
+          >
             <input
               className="modal__radio-input"
               type="radio"

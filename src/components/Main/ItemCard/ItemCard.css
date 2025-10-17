@@ -1,37 +1,37 @@
 .item-card {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #f3f3f3;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    list-style: none;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f3f3;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  list-style: none;
 }
 
 .item-card:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .item-card__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .item-card__name {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: white;
-    padding: 8px 12px;
-    margin: 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    font-family: "Cabinet Grotesk", sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 18px;
-    color: #000;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: white;
+  padding: 8px 12px;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  color: #000;
 }
