@@ -2,13 +2,15 @@ import "./WeatherCard.css";
 import { defaultWeatherOptions } from "../../../utils/constants";
 
 function WeatherCard({ weatherData }) {
-  var isDay =
+  // Use const instead of var
+  const isDay =
     weatherData && typeof weatherData.isDay === "boolean"
       ? weatherData.isDay
       : true;
 
   // Raw condition from API (string or null)
-  var raw =
+  // Use const instead of var
+  const raw =
     weatherData && typeof weatherData.condition === "string"
       ? weatherData.condition
       : null;
@@ -16,7 +18,8 @@ function WeatherCard({ weatherData }) {
   // Map API condition to our 6 keys
   function normalizeCondition(c) {
     if (!c) return null;
-    var s = String(c).toLowerCase();
+    // Use const instead of var
+    const s = String(c).toLowerCase();
     if (s.indexOf("thunder") > -1 || s.indexOf("storm") > -1) return "storm";
     if (s.indexOf("drizzle") > -1 || s.indexOf("rain") > -1) return "rain";
     if (s.indexOf("snow") > -1 || s.indexOf("sleet") > -1) return "snow";
@@ -32,11 +35,13 @@ function WeatherCard({ weatherData }) {
     return null;
   }
 
-  var condition = normalizeCondition(raw);
+  // Use const instead of var
+  const condition = normalizeCondition(raw);
 
   function buildIconUrl(dayBool, cond) {
     if (!cond) return null;
-    var folder = dayBool ? "day" : "night";
+    // Use const instead of var
+    const folder = dayBool ? "day" : "night";
     return new URL(
       "../../../assets/" + folder + "/" + cond + ".svg",
       import.meta.url
@@ -46,17 +51,20 @@ function WeatherCard({ weatherData }) {
   // Decide which URL to use:
   // 1) Construct specific icon URL if we have a normalized condition
   // 2) Otherwise, use your day/night default from constants
-  var specificUrl = buildIconUrl(isDay, condition);
-  var defaultUrl = (
+  // Use const instead of var
+  const specificUrl = buildIconUrl(isDay, condition);
+  const defaultUrl = (
     defaultWeatherOptions.find(function (o) {
       return o.day === isDay;
     }) || defaultWeatherOptions[0]
   ).url;
 
-  var src = specificUrl || defaultUrl;
+  // Use const instead of var
+  const src = specificUrl || defaultUrl;
 
   // Temperature read with guard
-  var tempF =
+  // Use const instead of var
+  const tempF =
     weatherData &&
     weatherData.temperature &&
     typeof weatherData.temperature.F !== "undefined"
