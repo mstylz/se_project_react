@@ -7,7 +7,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
-import { useFormAndValidation } from "../../Hooks/useFormAndValidation";
+import { useFormAndValidation } from "../hooks/useFormAndValidation";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
