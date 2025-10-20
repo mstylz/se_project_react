@@ -1,16 +1,15 @@
 import "./ModalWithForm.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 function ModalWithForm({
   children,
   title,
   buttonText,
   isOpen,
+  isFormValid, 
   onClose,
   onSubmit,
 }) {
-  const formRef = useRef(null);
-  const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -19,29 +18,15 @@ function ModalWithForm({
     return () => document.removeEventListener("keydown", onEsc);
   }, [isOpen, onClose]);
 
-  useEffect(() => {
-    if (!isOpen) setIsValid(false);
-  }, [isOpen]);
-
   const handleOverlay = (e) => {
     if (e.target === e.currentTarget) onClose();
   };
 
-  const recomputeValidity = () => {
-    const form = formRef.current;
-    if (!form) return setIsValid(false);
-    setIsValid(form.checkValidity());
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = formRef.current;
-    if (!form || !form.checkValidity()) return;
-
-    if (onSubmit) onSubmit(new FormData(form));
-
-    form.reset();
-    setIsValid(false);
+    if (onSubmit) {
+      onSubmit();
+    }
   };
 
   if (!isOpen) return null;
@@ -59,17 +44,12 @@ function ModalWithForm({
           onClick={onClose}
           aria-label="Close modal"
         ></button>
-        <form
-          ref={formRef}
-          className="modal__form"
-          onSubmit={handleSubmit}
-          onInput={recomputeValidity}
-        >
+        <form className="modal__form" onSubmit={handleSubmit}>
           {children}
           <button
-            className={`modal__submit-button ${isValid ? "is-primary" : ""}`}
+            className={`modal__submit-button ${isFormValid ? "is-primary" : ""}`}
             type="submit"
-            disabled={!isValid}
+            disabled={!isFormValid}
           >
             {buttonText}
           </button>
