@@ -6,8 +6,12 @@ import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi";
-import { coordinates, APIkey } from "../../utils/constants";
-import { useFormAndValidation } from "../hooks/useFormAndValidation";
+import {
+  coordinates,
+  APIkey,
+  defaultClothingItems,
+} from "../../utils/constants";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -16,7 +20,7 @@ function App() {
     city: "",
   });
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
@@ -47,6 +51,7 @@ function App() {
           crypto.randomUUID()) ||
         String(Date.now()) + Math.random().toString(36).slice(2),
     };
+
     setItems((prev) => [newItem, ...prev]);
     closeActiveModal();
   };
@@ -64,7 +69,7 @@ function App() {
         <Main
           weatherData={weatherData}
           handleCardClick={handleCardClick}
-          items={items}
+          items={items} // Now includes both default and new items
         />
         <Footer />
       </div>
