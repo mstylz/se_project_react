@@ -1,16 +1,13 @@
 import "./App.css";
 import Header from "../Header/Header";
-import Main from "../Main/Main";
+import Main from "../Main/main";
 import Footer from "../Footer/Footer";
 import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi";
-import {
-  coordinates,
-  APIkey,
-  defaultClothingItems,
-} from "../../utils/constants";
+import { coordinates, APIkey } from "../../utils/constants";
+import { useFormAndValidation } from "../Hooks/useFormAndValidation"; 
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -19,9 +16,11 @@ function App() {
     city: "",
   });
 
-  const [items, setItems] = useState(defaultClothingItems);
+  const [items, setItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+
+  const { values, handleChange, isValid, resetForm } = useFormAndValidation();
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -34,23 +33,20 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+    resetForm(); // Reset form when modal closes
   };
 
-  const handleAddGarment = (fd) => {
-    const name = (fd.get("name") || "").toString().trim();
-    const link = (fd.get("imageUrl") || "").toString().trim();
-    let weather = (fd.get("weather") || "").toString().trim();
-
-    if (!name || !link) return;
-    if (!weather) weather = weatherData.type || "cold";
-
-    const id =
-      (typeof crypto !== "undefined" &&
-        crypto.randomUUID &&
-        crypto.randomUUID()) ||
-      String(Date.now()) + Math.random().toString(36).slice(2);
-
-    const newItem = { _id: id, name, link, weather };
+  const handleAddGarmentSubmit = () => {
+    const newItem = {
+      name: values.name,
+      link: values.imageUrl,
+      weather: values.weather,
+      _id:
+        (typeof crypto !== "undefined" &&
+          crypto.randomUUID &&
+          crypto.randomUUID()) ||
+        String(Date.now()) + Math.random().toString(36).slice(2),
+    };
     setItems((prev) => [newItem, ...prev]);
     closeActiveModal();
   };
@@ -75,9 +71,10 @@ function App() {
       <ModalWithForm
         title="New Garment"
         buttonText="Add Garment"
-        activeModal={activeModal}
+        isOpen={activeModal === "add-garment"}
+        isFormValid={isValid}
         onClose={closeActiveModal}
-        onSubmit={handleAddGarment}
+        onSubmit={handleAddGarmentSubmit}
       >
         <label htmlFor="name" className="modal__label">
           Name
@@ -87,7 +84,11 @@ function App() {
             id="name"
             name="name"
             placeholder="Name"
+            value={values.name || ""}
+            onChange={handleChange}
             required
+            minLength="1"
+            maxLength="30"
           />
         </label>
         <label htmlFor="imageUrl" className="modal__label">
@@ -98,6 +99,8 @@ function App() {
             id="imageUrl"
             name="imageUrl"
             placeholder="Image URL"
+            value={values.imageUrl || ""}
+            onChange={handleChange}
             required
           />
         </label>
@@ -110,6 +113,9 @@ function App() {
               id="hot"
               name="weather"
               value="hot"
+              checked={values.weather === "hot"}
+              onChange={handleChange}
+              required
             />
             <span className="modal__radio-label">Hot</span>
           </label>
@@ -123,6 +129,9 @@ function App() {
               id="warm"
               name="weather"
               value="warm"
+              checked={values.weather === "warm"}
+              onChange={handleChange}
+              required
             />
             <span className="modal__radio-label">Warm</span>
           </label>
@@ -136,6 +145,9 @@ function App() {
               id="cold"
               name="weather"
               value="cold"
+              checked={values.weather === "cold"}
+              onChange={handleChange}
+              required
             />
             <span className="modal__radio-label">Cold</span>
           </label>
