@@ -5,11 +5,10 @@ function ModalWithForm({
   children,
   title,
   buttonText,
-  activeModal,
+  isOpen,
   onClose,
   onSubmit,
 }) {
-  const isOpen = activeModal === "add-garment";
   const formRef = useRef(null);
   const [isValid, setIsValid] = useState(false);
 
@@ -28,39 +27,19 @@ function ModalWithForm({
     if (e.target === e.currentTarget) onClose();
   };
 
-  const isHttpUrl = (v) => {
-    try {
-      const u = new URL(String(v || "").trim());
-      return u.protocol === "http:" || u.protocol === "https:";
-    } catch {
-      return false;
-    }
-  };
-
   const recomputeValidity = () => {
     const form = formRef.current;
     if (!form) return setIsValid(false);
-    const nameEl = form.querySelector('input[name="name"]');
-    const urlEl = form.querySelector('input[name="imageUrl"]');
-
-    const nameOk = !!nameEl && String(nameEl.value || "").trim().length > 0;
-    const urlOk = !!urlEl && isHttpUrl(urlEl.value);
-
-    setIsValid(nameOk && urlOk);
+    setIsValid(form.checkValidity());
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = formRef.current;
-    if (!form) return;
-    const nameEl = form.querySelector('input[name="name"]');
-    const urlEl = form.querySelector('input[name="imageUrl"]');
-
-    const nameOk = !!nameEl && String(nameEl.value || "").trim().length > 0;
-    const urlOk = !!urlEl && isHttpUrl(urlEl.value);
-    if (!(nameOk && urlOk)) return;
+    if (!form || !form.checkValidity()) return;
 
     if (onSubmit) onSubmit(new FormData(form));
+
     form.reset();
     setIsValid(false);
   };
@@ -78,14 +57,13 @@ function ModalWithForm({
           className="modal__close-button"
           type="button"
           onClick={onClose}
-          aria-label="Close"
+          aria-label="Close modal"
         ></button>
         <form
           ref={formRef}
           className="modal__form"
           onSubmit={handleSubmit}
           onInput={recomputeValidity}
-          onChange={recomputeValidity}
         >
           {children}
           <button
