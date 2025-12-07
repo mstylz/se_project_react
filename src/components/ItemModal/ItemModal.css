@@ -1,9 +1,6 @@
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -11,8 +8,8 @@
   visibility: hidden;
   opacity: 0;
   transition:
-    visibility 0.3s,
-    opacity 0.3s;
+    visibility 0.3s ease,
+    opacity 0.3s ease;
   z-index: 1000;
 }
 
@@ -21,15 +18,21 @@
   opacity: 1;
 }
 
+.modal_hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .modal__content_type_image {
   position: relative;
   max-width: 498px;
   width: calc(100% - 80px);
-  padding: 0;
   border-radius: 16px;
   overflow: hidden;
   background: #ffffff;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
 }
 
 .modal__close-button {
@@ -49,7 +52,7 @@
 
 .modal__close-button::after {
   content: "×";
-  font-size: 36px;
+  font-size: 32px;
   color: rgba(0, 0, 0, 0.5);
   line-height: 1;
 }
@@ -64,29 +67,106 @@
   height: auto;
   object-fit: contain;
   display: block;
+  background: #f3f3f3;
 }
 
 .modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 32px 24px;
   background: #ffffff;
-  padding: 20px 32px 32px;
+}
+
+.modal__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .modal__caption {
-  margin: 0 0 12px 0;
-  font-family: "Cabinet Grotesk", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  color: #000;
-}
-
-.modal__weather {
   margin: 0;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  color: #000;
+  color: #000000;
+}
+
+.modal__weather {
+  margin: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.modal__delete-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ff4d00;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.modal__delete-button:hover {
+  color: #e63f00;
+}
+
+.modal__content_type_confirm {
+  max-width: 670px;
+  width: calc(100% - 80px);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  padding: 40px 80px 32px;
+  text-align: center;
+}
+
+.modal__content_type_confirm p {
+  margin: 0 0 28px 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #000000;
+}
+
+.modal__confirm-button {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modal__confirm-button_primary {
+  color: #ff4d00;
+  margin-bottom: 16px;
+}
+
+.modal__confirm-button_primary:hover {
+  color: #e63f00;
+}
+
+.modal__confirm-button_secondary {
+  color: #000000;
+}
+
+.modal__confirm-button_secondary:hover {
+  color: #333333;
 }
 
 @media (max-width: 480px) {
@@ -96,18 +176,13 @@
     border-radius: 16px;
   }
   .modal__image {
-    height: 343px;
+    max-height: 343px;
   }
   .modal__footer {
-    padding: 20px 24px 24px;
+    padding: 18px 20px 20px;
   }
-  .modal__close-button {
-    top: 12px;
-    right: 12px;
-    width: 36px;
-    height: 36px;
-  }
-  .modal__close-button::after {
-    font-size: 28px;
+  .modal__content_type_confirm {
+    width: calc(100% - 40px);
+    padding: 32px 24px 24px;
   }
 }

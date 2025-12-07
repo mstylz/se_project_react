@@ -1,15 +1,20 @@
 import "./WeatherCard.css";
-import { defaultWeatherOptions } from "../../../utils/constants";
+import {
+  weatherOptions,
+  defaultWeatherOptions,
+} from "../../../utils/constants";
+
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit";
 
 function WeatherCard({ weatherData }) {
-  // Use const instead of var
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
   const isDay =
     weatherData && typeof weatherData.isDay === "boolean"
       ? weatherData.isDay
       : true;
 
-  // Raw condition from API (string or null)
-  // Use const instead of var
   const raw =
     weatherData && typeof weatherData.condition === "string"
       ? weatherData.condition
@@ -35,12 +40,10 @@ function WeatherCard({ weatherData }) {
     return null;
   }
 
-  // Use const instead of var
   const condition = normalizeCondition(raw);
 
   function buildIconUrl(dayBool, cond) {
     if (!cond) return null;
-    // Use const instead of var
     const folder = dayBool ? "day" : "night";
     return new URL(
       "../../../assets/" + folder + "/" + cond + ".svg",
@@ -51,7 +54,6 @@ function WeatherCard({ weatherData }) {
   // Decide which URL to use:
   // 1) Construct specific icon URL if we have a normalized condition
   // 2) Otherwise, use your day/night default from constants
-  // Use const instead of var
   const specificUrl = buildIconUrl(isDay, condition);
   const defaultUrl = (
     defaultWeatherOptions.find(function (o) {
@@ -59,21 +61,28 @@ function WeatherCard({ weatherData }) {
     }) || defaultWeatherOptions[0]
   ).url;
 
-  // Use const instead of var
   const src = specificUrl || defaultUrl;
 
   // Temperature read with guard
-  // Use const instead of var
   const tempF =
     weatherData &&
     weatherData.temperature &&
     typeof weatherData.temperature.F !== "undefined"
       ? weatherData.temperature.F
       : "—";
-
+  const tempC =
+    weatherData &&
+    weatherData.temperature &&
+    typeof weatherData.temperature.C !== "undefined"
+      ? weatherData.temperature.C
+      : "—";
   return (
     <section className="weather-card">
-      <p className="weather-card__temp"> {`${tempF}° F`} </p>{" "}
+      <p className="weather-card__temp">
+        {" "}
+        {currentTemperatureUnit === "F" ? tempF : tempC} °
+        {currentTemperatureUnit}
+      </p>{" "}
       <img
         src={src}
         alt={`card showing ${isDay ? "day" : "night"}time ${condition || "default"} weather`}
@@ -83,7 +92,7 @@ function WeatherCard({ weatherData }) {
           e.currentTarget.onerror = null;
           e.currentTarget.src = defaultUrl;
         }}
-      />{" "}
+      />
     </section>
   );
 }

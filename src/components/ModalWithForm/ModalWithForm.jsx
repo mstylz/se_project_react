@@ -6,11 +6,10 @@ function ModalWithForm({
   title,
   buttonText,
   isOpen,
-  isFormValid, 
+  isFormValid,
   onClose,
   onSubmit,
 }) {
-
   useEffect(() => {
     if (!isOpen) return;
     const onEsc = (e) => e.key === "Escape" && onClose();
@@ -25,7 +24,7 @@ function ModalWithForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (onSubmit) {
-      onSubmit();
+      onSubmit(e);
     }
   };
 

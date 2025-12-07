@@ -1,10 +1,18 @@
 @font-face {
   font-family: "Cabinet Grotesk";
   src:
-    url(./../../fonts/CabinetGrotesk-Bold.woff2) format("woff2"),
-    url(./../../fonts/CabinetGrotesk-Bold.woff) format("woff");
+    url(./../../fonts/WEB/CabinetGrotesk-Bold.woff2) format("woff2"),
+    url(./../../fonts/WEB/CabinetGrotesk-Bold.woff) format("woff");
   font-weight: 700;
   font-style: bold;
+}
+
+main {
+  padding: 40px 40px;
+  max-width: 1360px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .cards__list {
@@ -22,4 +30,27 @@
   font-size: 20px;
   line-height: 24px;
   margin: 40px 0 20px 0;
+}
+
+@media (max-width: 750px) {
+  main {
+    padding: 20px 16px;
+    max-width: none;
+  }
+  .cards__text {
+    margin: 20px 0 16px 0;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .cards__list {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 374px) {
+  .cards__list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }

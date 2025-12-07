@@ -5,13 +5,10 @@
 
 .footer__inner {
   max-width: 1360px;
-  /* matches .page__content */
   margin: 0 auto;
   padding: 24px 20px;
-  /* same side padding as .page__content */
   box-sizing: border-box;
   display: flex;
-  /* ensures left/right stay on one row */
   justify-content: space-between;
   align-items: center;
   gap: 16px;

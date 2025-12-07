@@ -1,0 +1,78 @@
+.profile {
+  display: flex;
+  gap: 100px;
+  align-items: flex-start;
+  padding: 40px 40px;
+  max-width: 1360px;
+  margin: 0 auto;
+  min-height: 60vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile__clothing {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.profile__clothing-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 32px;
+  height: 56px;
+}
+
+.profile__clothing-title {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.profile__add-button {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.profile__add-button:hover {
+  opacity: 1;
+}
+
+@media (max-width: 750px) {
+  .profile {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    align-items: stretch;
+  }
+  .profile__clothing {
+    padding: 0 16px 32px 16px;
+    padding-top: 0;
+  }
+  .profile__clothing-header {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
+    height: auto;
+    margin-bottom: 16px;
+  }
+  .profile__clothing-title {
+    font-size: 18px;
+  }
+}

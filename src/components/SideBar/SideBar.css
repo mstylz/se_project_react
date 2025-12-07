@@ -1,0 +1,99 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  flex-shrink: 0;
+  padding-top: 0;
+}
+
+.sidebar__profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 56px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.sidebar__user-name {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.sidebar__links {
+  display: none;
+}
+
+.sidebar__link {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.sidebar__link:hover {
+  opacity: 1;
+}
+
+@media (max-width: 750px) {
+  .sidebar {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 32px 16px 24px 16px;
+    margin-bottom: 0;
+  }
+  .sidebar__profile {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+    height: auto;
+  }
+  .sidebar__avatar {
+    margin-right: 0;
+    width: 56px;
+    height: 56px;
+  }
+  .sidebar__user-name {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 700;
+  }
+  .sidebar__links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 0;
+    align-items: center;
+  }
+  .sidebar__link {
+    font-size: 16px;
+    text-align: center;
+    height: auto;
+  }
+}

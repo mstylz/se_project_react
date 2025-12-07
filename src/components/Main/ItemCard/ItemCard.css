@@ -35,3 +35,10 @@
   line-height: 18px;
   color: #000;
 }
+
+@media (max-width: 750px) {
+  .item-card {
+    min-width: 150px;
+    box-sizing: border-box;
+  }
+}
