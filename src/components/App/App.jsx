@@ -86,11 +86,11 @@ function App() {
 
     getItems()
       .then((data) => {
-        const transformed = data.map((item) => ({
-          ...item,
-          _id: item._id ?? item.id,
-            link: item.link ?? item.imageUrl,
-        }));
+       const transformed = data.map((item) => ({
+  ...item,
+  _id: item._id ?? item.id,
+  link: item.link ?? item.imageUrl, 
+}));
 
         setItems(transformed);
       })
