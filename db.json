@@ -83,24 +83,6 @@
       "name": "T-Shirt",
       "weather": "hot",
       "link": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
-    },
-    {
-      "name": "item1",
-      "link": "https://img-1.kwcdn.com/local-goods-image/transfer/6788bf9/25833ef0-315d-46ef-9971-e7b19b5bb903.jpeg?imageView2/2/w/264/q/70/format/avif",
-      "weather": "cold",
-      "id": 17
-    },
-    {
-      "name": "item3",
-      "link": "https://img-1.kwcdn.com/local-goods-image/transfer/6788bf9/25833ef0-315d-46ef-9971-e7b19b5bb903.jpeg?imageView2/2/w/264/q/70/format/avif",
-      "weather": "cold",
-      "id": 19
-    },
-    {
-      "name": "item2",
-      "link": "https://img-1.kwcdn.com/local-goods-image/transfer/6788bf9/25833ef0-315d-46ef-9971-e7b19b5bb903.jpeg?imageView2/2/w/264/q/70/format/avif",
-      "weather": "cold",
-      "id": 21
     }
   ]
 }
