@@ -9,7 +9,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi";
 import { getItems, addItem, deleteItem } from "../../utils/api";
-import { coordinates, APIkey } from "../../utils/constants";
+import { coordinates, apiKey } from "../../utils/constants";
 import { useForm } from "../../hooks/useForm";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit";
 
@@ -80,7 +80,7 @@ function App() {
 
   // LOAD WEATHER + ITEMS
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => setWeatherData(filterWeatherData(data)))
       .catch((err) => console.error(err));
 
