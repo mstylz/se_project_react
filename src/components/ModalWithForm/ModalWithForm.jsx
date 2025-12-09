@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
 import { useEffect } from "react";
+import closeIcon from "../../assets/modal_form_close_button.svg"; // ← ADD THIS
 
 function ModalWithForm({
   children,
@@ -23,9 +24,7 @@ function ModalWithForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(e);
-    }
+    if (onSubmit) onSubmit(e);
   };
 
   if (!isOpen) return null;
@@ -43,14 +42,18 @@ function ModalWithForm({
           type="button"
           onClick={onClose}
           aria-label="Close modal"
-        ></button>
+        >
+          <img
+            src={closeIcon}
+            alt="Close modal"
+            className="modal-form__close-icon"
+          />
+        </button>
 
         <form className="modal__form" onSubmit={handleSubmit}>
           {children}
           <button
-            className={`modal__submit-button ${
-              isFormValid ? "is-primary" : ""
-            }`}
+            className={`modal__submit-button ${isFormValid ? "is-primary" : ""}`}
             type="submit"
             disabled={!isFormValid}
           >

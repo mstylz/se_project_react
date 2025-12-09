@@ -30,7 +30,6 @@
   border-radius: 16px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
   text-align: left;
-  font-family: inherit;
 }
 
 .modal__title {
@@ -39,10 +38,9 @@
   font-weight: 700;
   line-height: 20px;
   color: #000000;
-  font-family: inherit;
 }
 
-/* FIXED — NEW CLASS NAME */
+/* UPDATED → Now uses SVG icon (no “×” text) */
 
 .modal-form__close-button {
   position: absolute;
@@ -53,23 +51,23 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  border-radius: 50%;
-  transition: background 0.15s ease;
-  font-size: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.modal-form__close-button::after {
-  content: "×";
-  display: block;
-  font-size: 20px;
-  line-height: 28px;
-  text-align: center;
-  color: #8e8e8e;
+.modal-form__close-icon {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
 }
 
 .modal-form__close-button:hover {
-  background: rgba(0, 0, 0, 0.06);
+  opacity: 0.8;
 }
+
+/* FORM ELEMENTS */
 
 .modal__form {
   display: flex;
@@ -142,6 +140,8 @@
   line-height: 1;
 }
 
+/* SUBMIT BUTTON */
+
 .modal__submit-button {
   margin-top: 8px;
   height: 44px;
@@ -155,6 +155,9 @@
   transition:
     background 0.15s ease,
     color 0.15s ease;
+  align-self: flex-start;
+  padding: 10px 24px;
+  width: auto;
 }
 
 .modal__submit-button.is-primary:not([disabled]) {
@@ -165,6 +168,8 @@
 .modal__submit-button:not([disabled]):hover {
   filter: brightness(0.96);
 }
+
+/* MOBILE */
 
 @media (max-width: 480px) {
   .modal__content {
