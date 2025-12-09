@@ -42,7 +42,9 @@
   font-family: inherit;
 }
 
-.modal__close-button {
+/* FIXED — NEW CLASS NAME */
+
+.modal-form__close-button {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -56,7 +58,7 @@
   font-size: 0;
 }
 
-.modal__close-button::after {
+.modal-form__close-button::after {
   content: "×";
   display: block;
   font-size: 20px;
@@ -65,7 +67,7 @@
   color: #8e8e8e;
 }
 
-.modal__close-button:hover {
+.modal-form__close-button:hover {
   background: rgba(0, 0, 0, 0.06);
 }
 
@@ -122,7 +124,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
   gap: 10px;
   font-size: 16px;
   font-weight: 400;

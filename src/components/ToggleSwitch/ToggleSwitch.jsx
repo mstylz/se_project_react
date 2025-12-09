@@ -1,31 +1,32 @@
 import "./ToggleSwitch.css";
-import { useContext } from "react";
 import React from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit";
+
+import toggleF from "../../assets/toggle_Farenheit.svg";
+import toggleC from "../../assets/toggle_Celsius.svg";
 
 export default function ToggleSwitch() {
   const { handleToggleSwitchChange, currentTemperatureUnit } = React.useContext(
     CurrentTemperatureUnitContext
   );
 
+  const isCelsius = currentTemperatureUnit === "C";
+
   return (
-    <label className="toggle-switch">
+    <label className="toggle">
       <input
-        onChange={handleToggleSwitchChange}
         type="checkbox"
-        className="toggle-switch_checkbox"
+        checked={isCelsius}
+        onChange={handleToggleSwitchChange}
+        className="toggle__checkbox"
       />
-      <span className="toggle-switch_circle"></span>
-      <span
-        className={`toggle-switch_text toggle-switch_text_F ${currentTemperatureUnit === "F" ? "toggle-switch__text_color_white" : ""}`}
-      >
-        °F
-      </span>
-      <span
-        className={`toggle-switch_text toggle-switch_text_C ${currentTemperatureUnit === "C" ? "toggle-switch__text_color_white" : ""}`}
-      >
-        °C
-      </span>
+
+      {/* BACKGROUND IMAGE */}
+      <img
+        src={isCelsius ? toggleC : toggleF}
+        alt="temperature switch"
+        className="toggle__image"
+      />
     </label>
   );
 }

@@ -1,7 +1,9 @@
 main {
-  padding: 40px 40px;
+  margin-top: 0;
+  padding: 0 40px 40px;
   max-width: 1360px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   box-sizing: border-box;
   width: 100%;
 }
@@ -28,13 +30,11 @@ main {
     padding: 20px 16px;
     max-width: none;
   }
-
   .cards__text {
     margin: 20px 0 16px 0;
     font-size: 18px;
     line-height: 22px;
   }
-
   .cards__list {
     grid-template-columns: 1fr 1fr;
     gap: 16px;

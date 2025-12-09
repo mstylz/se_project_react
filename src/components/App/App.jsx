@@ -1,3 +1,5 @@
+// src/components/App/App.jsx
+
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import "./App.css";
@@ -27,74 +29,52 @@ function App() {
 
   const { resetForm } = useForm();
 
-  const handleToggleSwitchChange = () => {
+  const handleToggleSwitchChange = () =>
     setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
-  };
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal("preview");
   };
 
-  const handleAddClick = () => {
-    setActiveModal("add-garment");
-  };
+  const handleAddClick = () => setActiveModal("add-garment");
 
   const closeActiveModal = () => {
     setActiveModal("");
     resetForm();
   };
 
-  // ADD NEW GARMENT
+  // ADD new garment
   const handleAddGarmentSubmit = (name, imageUrl, weather) => {
-    const newItem = {
-      name,
-      link: imageUrl,
-      weather,
-    };
+    const newItem = { name, imageUrl, weather };
 
     addItem(newItem)
       .then((created) => {
-        const normalized = {
-          ...created,
-          _id: created.id,
-        };
-
-        setItems((prev) => [normalized, ...prev]);
+        setItems((prev) => [created, ...prev]);
         closeActiveModal();
       })
-      .catch((err) => console.error("Add failed:", err));
+      .catch((err) => console.error("Add item failed:", err));
   };
 
-  // DELETE GARMENT
+  // DELETE garment
   const handleDeleteItem = (id) => {
     deleteItem(id)
       .then(() => {
-        setItems((prev) =>
-          prev.filter((item) => item._id !== id && item.id !== id)
-        );
+        setItems((prev) => prev.filter((item) => item._id !== id));
         closeActiveModal();
       })
       .catch((err) => console.error("Delete failed:", err));
   };
 
-  // LOAD WEATHER + ITEMS
+  // Load items + weather on mount
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => setWeatherData(filterWeatherData(data)))
-      .catch((err) => console.error(err));
+      .catch(console.error);
 
     getItems()
-      .then((data) => {
-       const transformed = data.map((item) => ({
-  ...item,
-  _id: item._id ?? item.id,
-  link: item.link ?? item.imageUrl, 
-}));
-
-        setItems(transformed);
-      })
-      .catch((err) => console.error(err));
+      .then((data) => setItems(data))
+      .catch(console.error);
   }, []);
 
   return (

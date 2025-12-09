@@ -23,7 +23,9 @@
   pointer-events: none;
 }
 
-.modal__content_type_image {
+/* IMAGE PREVIEW MODAL */
+
+.modal__content.modal__content_type_image {
   position: relative;
   max-width: 498px;
   width: calc(100% - 80px);
@@ -33,49 +35,78 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
   display: flex;
   flex-direction: column;
+  padding: 0;
 }
+
+/* TITLE ABOVE IMAGE — ADDED */
+
+.modal__title-top {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  z-index: 3;
+  margin: 0;
+  pointer-events: none;
+}
+
+/* CLOSE BUTTON */
 
 .modal__close-button {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 40px;
-  height: 40px;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
   border: none;
   background: transparent;
   cursor: pointer;
-  font-size: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  z-index: 4;
 }
 
-.modal__close-button::after {
-  content: "×";
-  font-size: 32px;
-  color: rgba(0, 0, 0, 0.5);
-  line-height: 1;
+.modal__close-icon {
+  width: 24px;
+  height: 24px;
 }
 
-.modal__close-button:hover::after {
-  color: rgba(0, 0, 0, 0.8);
+.modal__close-button:hover .modal__close-icon {
+  opacity: 0.8;
+}
+
+/* IMAGE WRAPPER */
+
+.modal__image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f3f3f3;
+  overflow: hidden;
 }
 
 .modal__image {
   width: 100%;
-  max-height: 498px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  background: #f3f3f3;
+  height: 100%;
+  object-fit: cover;
 }
+
+/* FOOTER */
 
 .modal__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 20px 32px 24px;
+  padding: 20px 24px 24px;
   background: #ffffff;
 }
 
@@ -100,7 +131,6 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  color: #000000;
 }
 
 .modal__delete-button {
@@ -111,17 +141,17 @@
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
-  line-height: 20px;
   color: #ff4d00;
   cursor: pointer;
-  white-space: nowrap;
 }
 
 .modal__delete-button:hover {
   color: #e63f00;
 }
 
-.modal__content_type_confirm {
+/* CONFIRM MODAL */
+
+.modal__content.modal__content_type_confirm {
   max-width: 670px;
   width: calc(100% - 80px);
   border-radius: 20px;
@@ -129,15 +159,14 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
   padding: 40px 80px 32px;
   text-align: center;
+  position: relative;
 }
 
 .modal__content_type_confirm p {
   margin: 0 0 28px 0;
-  font-family: "Cabinet Grotesk", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.4;
-  color: #000000;
 }
 
 .modal__confirm-button {
@@ -146,7 +175,6 @@
   border: none;
   background: transparent;
   padding: 0;
-  font-family: "Cabinet Grotesk", sans-serif;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -157,31 +185,22 @@
   margin-bottom: 16px;
 }
 
-.modal__confirm-button_primary:hover {
-  color: #e63f00;
-}
-
 .modal__confirm-button_secondary {
   color: #000000;
 }
 
-.modal__confirm-button_secondary:hover {
-  color: #333333;
-}
-
 @media (max-width: 480px) {
-  .modal__content_type_image {
+  .modal__content.modal__content_type_image {
     width: calc(100% - 40px);
     max-width: 343px;
-    border-radius: 16px;
   }
-  .modal__image {
-    max-height: 343px;
+  .modal__image-wrapper {
+    aspect-ratio: 1 / 1;
   }
   .modal__footer {
     padding: 18px 20px 20px;
   }
-  .modal__content_type_confirm {
+  .modal__content.modal__content_type_confirm {
     width: calc(100% - 40px);
     padding: 32px 24px 24px;
   }

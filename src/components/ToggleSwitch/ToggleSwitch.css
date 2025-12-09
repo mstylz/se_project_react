@@ -1,79 +1,35 @@
-.toggle-switch {
+.toggle {
+  display: inline-block;
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 28px;
-  background: #fff;
-  border: 2px solid #b4b4b4;
-  border-radius: 20px;
+  width: 74px;
+  /* Figma width */
+  height: 32px;
+  /* Figma height */
   cursor: pointer;
-  box-sizing: border-box;
-  overflow: hidden;
-  font-family: "Cabinet Grotesk", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 100%;
-  font-style: bold;
 }
 
-.toggle-switch_checkbox {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-  margin: 0;
-  z-index: 3;
+.toggle__checkbox {
+  display: none;
 }
 
-.toggle-switch_circle {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #000;
-  transition: left 0.25s ease;
-  z-index: 2;
-  display: flex;
+.toggle__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.25s ease;
 }
 
-.toggle-switch_checkbox:checked ~ .toggle-switch_circle {
-  left: 28px;
+/* Hover animation: subtle move (2px) */
+
+.toggle:hover .toggle__image {
+  transform: translateX(2px);
 }
 
-.toggle-switch_text {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  font-weight: 700;
-  color: #7e7e7e;
-  z-index: 4;
-  user-select: none;
-  pointer-events: none;
-  line-height: 1;
-}
+/* Checked state = Celsius version already loaded in JSX */
 
-.toggle-switch_text_F {
-  left: 7px;
-  color: #fff;
-}
+/* Optional: a more dramatic moving effect */
 
-.toggle-switch_text_C {
-  right: 7px;
-}
-
-.toggle-switch_checkbox:checked ~ .toggle-switch_text_C {
-  color: #fff;
-}
-
-.toggle-switch_checkbox:checked ~ .toggle-switch_text_F {
-  color: #7e7e7e;
-}
-
-.toggle-switch__text_color_white {
-  color: #fff;
+.toggle__checkbox:checked + .toggle__image {
+  transform: translateX(0);
+  /* stays centered since Figma SVG includes circle */
 }

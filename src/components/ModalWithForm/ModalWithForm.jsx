@@ -37,16 +37,20 @@ function ModalWithForm({
     >
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
+
         <button
-          className="modal__close-button"
+          className="modal-form__close-button"
           type="button"
           onClick={onClose}
           aria-label="Close modal"
         ></button>
+
         <form className="modal__form" onSubmit={handleSubmit}>
           {children}
           <button
-            className={`modal__submit-button ${isFormValid ? "is-primary" : ""}`}
+            className={`modal__submit-button ${
+              isFormValid ? "is-primary" : ""
+            }`}
             type="submit"
             disabled={!isFormValid}
           >

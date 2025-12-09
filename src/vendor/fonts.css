@@ -1,3 +1,5 @@
+/* Poppins (already in your file) */
+
 @font-face {
   font-family: "Poppins";
   font-style: normal;
@@ -10,4 +12,15 @@
   font-style: normal;
   font-weight: 500;
   src: url("./fonts/Poppins-Medium.ttf") format("truetype");
+}
+
+/* Cabinet Grotesk — required globally */
+
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src:
+    url("./fonts/CabinetGrotesk-Bold.woff2") format("woff2"),
+    url("./fonts/CabinetGrotesk-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
 }
