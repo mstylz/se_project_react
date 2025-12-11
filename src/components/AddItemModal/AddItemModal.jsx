@@ -1,3 +1,5 @@
+// src/components/AddItemModal/AddItemModal.jsx
+
 import { useEffect } from "react";
 import { useForm } from "../../hooks/useForm.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
@@ -17,8 +19,12 @@ const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // IMPORTANT: send 3 separate arguments to App
-    onAddItem(values.name, values.imageUrl, values.weather);
+
+    onAddItem({
+      name: values.name,
+      imageUrl: values.imageUrl,
+      weather: values.weather,
+    });
   };
 
   return (

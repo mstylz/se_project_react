@@ -27,7 +27,8 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
-
+  console.log("Card object on render:", card);
+  console.log("Card weather property:", card.weather);
   const openConfirm = () => setConfirmOpen(true);
   const closeConfirm = () => setConfirmOpen(false);
 

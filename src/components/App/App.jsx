@@ -44,8 +44,7 @@ function App() {
     resetForm();
   };
 
-  // ADD new garment
-  const handleAddGarmentSubmit = (name, imageUrl, weather) => {
+  const handleAddGarmentSubmit = ({ name, imageUrl, weather }) => {
     const newItem = { name, imageUrl, weather };
 
     addItem(newItem)
@@ -112,12 +111,14 @@ function App() {
           <Footer />
         </div>
 
+        {/* ADD ITEM MODAL */}
         <AddItemModal
           isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
           onAddItem={handleAddGarmentSubmit}
         />
 
+        {/* ITEM PREVIEW / DELETE MODAL */}
         <ItemModal
           activeModal={activeModal}
           onClose={closeActiveModal}

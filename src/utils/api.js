@@ -7,14 +7,12 @@ export const checkResponse = (res) => {
     return res.json();
 };
 
-// Normalize item → ALWAYS return imageUrl + _id
-const normalizeItem = (item) => {
-    return {
-        ...item,
-        _id: item._id !== undefined && item._id !== null ? item._id : item.id,
-        imageUrl: item.imageUrl && item.imageUrl !== "" ? item.imageUrl : item.link
-    };
-};
+const normalizeItem = (item) => ({
+    ...item,
+    _id: item._id,
+    imageUrl: item.imageUrl || item.link || "",
+});
+
 
 // GET all items
 export const getItems = () => {
@@ -26,14 +24,14 @@ export const getItems = () => {
 // ADD new item
 export const addItem = ({ name, imageUrl, weather }) => {
     return fetch(BASE_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                name,
-                imageUrl, // <-- use imageUrl moving forward
-                weather
-            })
-        })
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name,
+            imageUrl,
+            weather,
+        }),
+    })
         .then(checkResponse)
         .then((item) => normalizeItem(item));
 };
@@ -41,6 +39,6 @@ export const addItem = ({ name, imageUrl, weather }) => {
 // DELETE item
 export const deleteItem = (id) => {
     return fetch(`${BASE_URL}/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
     }).then(checkResponse);
 };
