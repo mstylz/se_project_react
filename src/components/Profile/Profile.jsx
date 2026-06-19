@@ -6,10 +6,18 @@ export default function Profile({
   clothingItems = [],
   handleCardClick,
   handleAddClick,
+  handleLogout,
+  handleEditProfileClick,
+  onCardLike,
+  isLoggedIn,
 }) {
   return (
     <section className="profile">
-      <SideBar />
+      <SideBar
+        handleLogout={handleLogout}
+        handleEditProfileClick={handleEditProfileClick}
+      />
+
       <div className="profile__clothing">
         <div className="profile__clothing-header">
           <h2 className="profile__clothing-title">Your items</h2>
@@ -21,9 +29,12 @@ export default function Profile({
             + Add new
           </button>
         </div>
+
         <ClothesSection
           clothingItems={clothingItems}
           handleCardClick={handleCardClick}
+          onCardLike={onCardLike}
+          isLoggedIn={isLoggedIn}
         />
       </div>
     </section>

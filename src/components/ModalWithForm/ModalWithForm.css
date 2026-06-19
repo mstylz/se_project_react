@@ -1,14 +1,16 @@
 .modal {
   position: fixed;
   inset: 0;
-  background-color: #0000004d;
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0.3s ease,
+    opacity 0.3s ease;
   z-index: 1000;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
 }
 
 .modal,
@@ -18,43 +20,38 @@
 
 .modal_opened {
   visibility: visible;
+  opacity: 1;
 }
 
 .modal__content {
   background-color: #fff;
   position: relative;
-  padding: 24px 24px 28px;
-  max-width: 520px;
+  padding: 28px;
+  max-width: 496px;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  border-radius: 20px;
   text-align: left;
 }
 
 .modal__title {
-  margin: 0 0 16px 0;
+  margin: 0 0 24px;
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;
-  color: #000000;
+  color: #000;
 }
-
-/* UPDATED → Now uses SVG icon (no “×” text) */
 
 .modal-form__close-button {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 28px;
-  height: 28px;
+  top: 20px;
+  right: 28px;
+  width: 20px;
+  height: 20px;
   border: none;
   background: transparent;
   cursor: pointer;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .modal-form__close-icon {
@@ -63,118 +60,108 @@
   pointer-events: none;
 }
 
-.modal-form__close-button:hover {
-  opacity: 0.8;
-}
-
-/* FORM ELEMENTS */
-
 .modal__form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
 }
 
 .modal__label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   font-size: 16px;
   font-weight: 700;
-  color: #000000;
+  line-height: 20px;
+  color: #000;
+  margin-bottom: 24px;
 }
 
 .modal__input {
   width: 100%;
   border: none;
-  border-bottom: 1px solid #2c2c2c;
-  padding: 10px 2px 8px;
-  font-size: 14px;
+  border-bottom: 1px solid #000;
+  padding: 8px 0 4px;
+  font-size: 16px;
+  line-height: 20px;
   background: transparent;
   outline: none;
-  transition: border-color 0.15s ease;
 }
 
-.modal__input::placeholder {
-  color: #9aa3ab;
-}
-
-.modal__input:focus {
-  border-bottom-color: #2b70f7;
+.modal__error {
+  color: #ff4d00;
+  font-size: 12px;
+  line-height: 16px;
+  min-height: 16px;
+  margin-top: 4px;
 }
 
 .modal__radio-buttons {
   border: none;
   padding: 0;
-  margin: 6px 0 0 0;
-  display: block;
-  text-align: left;
+  margin: 0 0 24px;
 }
 
 .modal__legend {
-  margin: 0 0 8px 0;
+  margin: 0 0 12px;
   font-size: 16px;
   font-weight: 700;
-  color: #000000;
 }
 
 .modal__label_type_radio {
-  display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
-  font-size: 16px;
+  gap: 8px;
+  margin: 0 0 8px;
   font-weight: 400;
-  color: #000000;
-  margin: 8px 0;
-  width: fit-content;
 }
 
 .modal__radio-input {
-  width: 18px;
-  height: 18px;
-  accent-color: #2b70f7;
+  width: 16px;
+  height: 16px;
+  margin: 0;
 }
-
-.modal__radio-label {
-  line-height: 1;
-}
-
-/* SUBMIT BUTTON */
 
 .modal__submit-button {
-  margin-top: 8px;
-  height: 44px;
+  height: 36px;
   border: none;
-  border-radius: 8px;
-  background: #d9dadd;
-  color: #6d6e73;
-  font-weight: 600;
-  font-size: 14px;
+  border-radius: 4px;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
   cursor: pointer;
-  transition:
-    background 0.15s ease,
-    color 0.15s ease;
   align-self: flex-start;
-  padding: 10px 24px;
-  width: auto;
+  padding: 0 20px;
 }
 
-.modal__submit-button.is-primary:not([disabled]) {
-  background: #2b70f7;
-  color: #ffffff;
+.modal__submit-button:disabled {
+  background: #000;
+  opacity: 0.3;
+  cursor: default;
 }
 
-.modal__submit-button:not([disabled]):hover {
-  filter: brightness(0.96);
+.modal__secondary-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-left: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  opacity: 0.5;
+  cursor: pointer;
+  align-self: flex-start;
+  position: relative;
+  top: -36px;
+  left: 86px;
 }
-
-/* MOBILE */
 
 @media (max-width: 480px) {
   .modal__content {
-    max-width: calc(100% - 24px);
-    padding: 20px 20px 24px;
-    border-radius: 14px;
+    max-width: calc(100% - 32px);
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+  .modal-form__close-button {
+    right: 20px;
   }
 }

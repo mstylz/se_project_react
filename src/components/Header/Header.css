@@ -34,7 +34,8 @@
   flex-shrink: 0;
 }
 
-.header__add-clothes-btn {
+.header__add-clothes-btn,
+.header__auth-button {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
@@ -49,8 +50,15 @@
   white-space: nowrap;
 }
 
-.header__add-clothes-btn:hover {
+.header__add-clothes-btn:hover,
+.header__auth-button:hover {
   opacity: 1;
+}
+
+.header__auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .header__user-container {
@@ -94,10 +102,14 @@
     margin-left: 0;
     gap: 0;
   }
-  .header__add-clothes-btn {
+  .header__add-clothes-btn,
+  .header__auth-button {
     font-size: 14px;
     padding: 0;
     margin: 0;
+  }
+  .header__auth-buttons {
+    gap: 16px;
   }
   .header__username {
     display: none;

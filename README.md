@@ -1,91 +1,89 @@
-WTWR (What To Wear) — React + Vite + Persistent Server (json-server)
+# WTWR (What To Wear)
 
 Live demo:
 https://mstylz.github.io/se_project_react/
 
-A responsive, interactive React application that suggests clothing items based on the current weather. The project was originally built with a static wardrobe, but in this stage (Project 11), the app now uses a fully persistent backend powered by json-server. Users can add and delete clothing items, and changes remain saved even after refresh.
+Backend repository:
+https://github.com/mstylz/se_project_express
 
-✨ Features
-🌤 Weather Integration
+## About the Project
 
-Fetches real-time weather from OpenWeather API
+WTWR is a responsive React application that helps users decide what to wear based on the current weather. Users can register, log in, add clothing items, like items, delete their own items, and update their profile information.
 
-Displays city, temperature, and weather type
+This version connects the React frontend to a real Express/MongoDB backend with authentication and authorization.
 
-Dynamically filters clothing items by weather category (❄ cold / 🌤 warm / ☀ hot)
+## Features
 
-👕 Wardrobe Management (Persistent Data)
+* Real-time weather data from OpenWeather API
+* Clothing suggestions based on weather type
+* User registration and login
+* JWT authentication with localStorage persistence
+* Protected `/profile` route
+* Current user profile display
+* Add clothing items
+* Delete only your own clothing items
+* Like and unlike clothing items
+* Likes persist after page refresh
+* Edit profile name and avatar
+* Responsive layout based on the Figma design
 
-Full CRUD-like interaction with a mock API (json-server)
+## Tech Stack
 
-Add new clothing items via ModalWithForm
+### Frontend
 
-Click any item to open a preview modal
+* React
+* Vite
+* React Router
+* CSS
+* Context API
+* Local Storage
+* ESLint
+* Prettier
 
-Delete items permanently
+### Backend
 
-All wardrobe data persists in db.json
+* Node.js
+* Express
+* MongoDB
+* Mongoose
+* JWT
+* bcryptjs
+* validator
+* CORS
 
-🧱 Clean Component Architecture
+## Installation
 
-Organized React structure (components/, utils/, hooks/)
+Clone the frontend repository:
 
-Dedicated modals: AddItemModal, ItemModal, ModalWithForm
+```bash
+git clone https://github.com/mstylz/se_project_react.git
+cd se_project_react
+npm install
+npm run dev
+```
 
-Reusable functional components and prop-driven UI
+Clone and run the backend repository:
 
-⚠️ Key Challenge Solved: Identifier Mismatch (id vs _id)
+```bash
+git clone https://github.com/mstylz/se_project_express.git
+cd se_project_express
+npm install
+npm run dev
+```
 
-While implementing persistence, one major challenge was syncing identifiers between the frontend and backend.
+The frontend runs on:
 
-The UI originally expected _id (as taught in earlier parts of the program),
-but json-server only supports id.
+```bash
+http://localhost:3000
+```
 
-This mismatch caused:
+The backend runs on:
 
-Clothing items not deleting
+```bash
+http://localhost:3001
+```
 
-Wrong items being selected
-
-404 / 500 server errors
-
-React list keys becoming unstable
-
-Solution:
-I standardized the entire application to use id consistently:
-
-Server stores items with id
-
-React state normalizes received data
-
-Delete and render logic now depend on a unified identifier
-
-This alignment stabilized the entire data flow and fixed all persistence issues.
-
-🛠 Tech Stack
-Frontend
-
-React 18 (hooks, functional components)
-
-Vite 5 (super-fast dev server)
-
-CSS & TripleTen design system
-
-ESLint (flat config) + Prettier
-
-Backend (Mock API)
-
-json-server for persistent storage (db.json)
-
-Custom API helper functions inside utils/api.js
-
-Full error handling and response validation
-
-
-
-📸 Screenshots
-
-(Recommended on GitHub: They will render as full images)
+## Screenshots
 
 https://github.com/mstylz/se_project_react/blob/main/src/assets/screenshots/1.png
 
@@ -107,35 +105,18 @@ https://github.com/mstylz/se_project_react/blob/main/src/assets/screenshots/9.pn
 
 https://github.com/mstylz/se_project_react/blob/main/src/assets/screenshots/10.png
 
-🎥 Project Pitch Video
+## Project Video
 
-Check out this short walkthrough of my project and the challenges I solved:
 https://drive.google.com/file/d/177DKcuWB7y1HU8riM0oCbkNUbfRN63hE/view?usp=drive_link
 
-🚀 Installation & Setup (Local Development)
-# Clone the repo
-git clone https://github.com/mstylz/se_project_react.git
-cd se_project_react
+## Future Improvements
 
-# Install dependencies
-npm install
+* Improve loading states
+* Add better error messages for forms
+* Add advanced weather filtering
+* Improve accessibility for modals and buttons
+* Deploy the backend to a production server
 
-# Start json-server
-npx json-server --watch db.json --port 3001
+## License
 
-# Start Vite dev server
-npm run dev
-
-🧠 Future Improvements
-
-Add user authentication with protected wardrobes
-
-Let users "favorite" or categorize items
-
-Expand weather logic (e.g., humidity, wind, precipitation)
-
-Migrate from json-server to a real backend (Node/Express or MongoDB)
-
-📄 License
-
-MIT — free to use, modify, and share.
+MIT

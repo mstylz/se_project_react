@@ -1,11 +1,10 @@
 import WeatherCard from "./WeatherCard/WeatherCard";
 import ItemCard from "./ItemCard/ItemCard";
-// REMOVED: import { defaultClothingItems } from "../../utils/constants";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit";
 import { useContext } from "react";
 import "./Main.css";
 
-function Main({ weatherData, handleCardClick, items }) {
+function Main({ weatherData, handleCardClick, items, onCardLike, isLoggedIn }) {
   const tempC = weatherData.temperature.C;
   const tempF = weatherData.temperature.F;
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
@@ -34,10 +33,11 @@ function Main({ weatherData, handleCardClick, items }) {
         <ul className="cards__list">
           {clothingItems.map((item) => (
             <ItemCard
-              // FIXED: Uses item._id for the key
               key={item._id}
               item={item}
               onCardClick={handleCardClick}
+              onCardLike={onCardLike}
+              isLoggedIn={isLoggedIn}
             />
           ))}
         </ul>

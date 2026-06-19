@@ -1,14 +1,18 @@
 // src/components/ItemModal/ItemModal.jsx
 
 import "./ItemModal.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import closeIcon from "../../assets/modal_close_button.svg";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
   const isOpen = activeModal === "preview";
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const currentUser = useContext(CurrentUserContext);
 
-  // Reset confirm modal every time a new item opens
+  const isOwn =
+    card.owner === currentUser._id || card.owner?._id === currentUser._id;
+
   useEffect(() => {
     setConfirmOpen(false);
   }, [card]);
@@ -27,8 +31,7 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
-  console.log("Card object on render:", card);
-  console.log("Card weather property:", card.weather);
+
   const openConfirm = () => setConfirmOpen(true);
   const closeConfirm = () => setConfirmOpen(false);
 
@@ -42,7 +45,6 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
       className="modal modal_opened"
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
     >
-      {/* CONFIRM DELETE POPUP */}
       {confirmOpen && (
         <div className="modal__content modal__content_type_confirm">
           <button className="modal__close-button" onClick={closeConfirm}>
@@ -67,14 +69,12 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
         </div>
       )}
 
-      {/* IMAGE PREVIEW MODAL */}
       {!confirmOpen && (
         <div className="modal__content modal__content_type_image">
           <button className="modal__close-button" onClick={onClose}>
             <img src={closeIcon} alt="Close" className="modal__close-icon" />
           </button>
 
-          {/* ITEM NAME—TOP CENTER */}
           <h2 className="modal__title-top">{card.name}</h2>
 
           <div className="modal__image-wrapper">
@@ -87,13 +87,15 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
               <p className="modal__weather">Weather: {card.weather}</p>
             </div>
 
-            <button
-              type="button"
-              className="modal__delete-button"
-              onClick={openConfirm}
-            >
-              Delete item
-            </button>
+            {isOwn && (
+              <button
+                type="button"
+                className="modal__delete-button"
+                onClick={openConfirm}
+              >
+                Delete item
+              </button>
+            )}
           </div>
         </div>
       )}

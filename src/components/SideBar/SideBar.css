@@ -32,7 +32,10 @@
 }
 
 .sidebar__links {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
 }
 
 .sidebar__link {

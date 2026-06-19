@@ -1,7 +1,7 @@
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,73 +18,52 @@
   opacity: 1;
 }
 
-.modal_hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* IMAGE PREVIEW MODAL */
-
 .modal__content.modal__content_type_image {
   position: relative;
   max-width: 498px;
   width: calc(100% - 80px);
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   background: #ffffff;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
   display: flex;
   flex-direction: column;
   padding: 0;
 }
-
-/* TITLE ABOVE IMAGE — ADDED */
 
 .modal__title-top {
   position: absolute;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
-  padding: 6px 14px;
-  border-radius: 8px;
+  background: #fff;
+  padding: 2px 12px;
+  border-radius: 4px;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-  font-size: 18px;
-  line-height: 1;
+  font-size: 16px;
+  line-height: 20px;
   z-index: 3;
   margin: 0;
   pointer-events: none;
 }
 
-/* CLOSE BUTTON */
-
 .modal__close-button {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
+  top: 20px;
+  right: 28px;
+  width: 20px;
+  height: 20px;
   border: none;
   background: transparent;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 0;
   z-index: 4;
 }
 
 .modal__close-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
-
-.modal__close-button:hover .modal__close-icon {
-  opacity: 0.8;
-}
-
-/* IMAGE WRAPPER */
 
 .modal__image-wrapper {
   width: 100%;
@@ -99,21 +78,19 @@
   object-fit: cover;
 }
 
-/* FOOTER */
-
 .modal__footer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  padding: 20px 24px 24px;
+  padding: 20px 32px 32px;
   background: #ffffff;
 }
 
 .modal__info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 12px;
 }
 
 .modal__caption {
@@ -122,15 +99,15 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  color: #000000;
+  color: #000;
 }
 
 .modal__weather {
   margin: 0;
   font-family: "Cabinet Grotesk", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 .modal__delete-button {
@@ -140,33 +117,29 @@
   background: transparent;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
+  line-height: 24px;
   color: #ff4d00;
   cursor: pointer;
 }
-
-.modal__delete-button:hover {
-  color: #e63f00;
-}
-
-/* CONFIRM MODAL */
 
 .modal__content.modal__content_type_confirm {
   max-width: 670px;
   width: calc(100% - 80px);
   border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
-  padding: 40px 80px 32px;
+  background: #fff;
+  padding: 60px 151px;
   text-align: center;
   position: relative;
+  box-sizing: border-box;
 }
 
 .modal__content_type_confirm p {
-  margin: 0 0 28px 0;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.4;
+  margin: 0 0 24px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 .modal__confirm-button {
@@ -175,33 +148,38 @@
   border: none;
   background: transparent;
   padding: 0;
-  font-size: 16px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
   font-weight: 700;
   cursor: pointer;
 }
 
 .modal__confirm-button_primary {
   color: #ff4d00;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .modal__confirm-button_secondary {
-  color: #000000;
+  color: #000;
 }
 
 @media (max-width: 480px) {
   .modal__content.modal__content_type_image {
-    width: calc(100% - 40px);
+    width: calc(100% - 32px);
     max-width: 343px;
   }
-  .modal__image-wrapper {
-    aspect-ratio: 1 / 1;
-  }
   .modal__footer {
-    padding: 18px 20px 20px;
+    padding: 20px;
+  }
+  .modal__caption,
+  .modal__weather,
+  .modal__delete-button {
+    font-size: 16px;
+    line-height: 20px;
   }
   .modal__content.modal__content_type_confirm {
-    width: calc(100% - 40px);
-    padding: 32px 24px 24px;
+    width: calc(100% - 32px);
+    padding: 60px 24px;
   }
 }
