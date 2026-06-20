@@ -1,6 +1,6 @@
 // src/components/App/App.jsx
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Profile from "../Profile/Profile";
@@ -33,6 +33,8 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./App.css";
 
 function App() {
+  const navigate = useNavigate();
+
   const [weatherData, setWeatherData] = useState({
     type: "",
     temperature: { F: 999, C: 999 },
@@ -79,6 +81,7 @@ function App() {
         setCurrentUser(user);
         setIsLoggedIn(true);
         closeActiveModal();
+        navigate("/"); // ✅ FIX
       })
       .catch((err) => console.error("Registration failed:", err));
   };
@@ -94,6 +97,7 @@ function App() {
         setCurrentUser(user);
         setIsLoggedIn(true);
         closeActiveModal();
+        navigate("/"); // ✅ FIX
       })
       .catch((err) => console.error("Login failed:", err));
   };
@@ -160,20 +164,14 @@ function App() {
       .catch(console.error);
 
     getItems()
-      .then((data) => {
-        setItems(data);
-      })
-      .catch((err) => {
-        console.error("GET ITEMS FAILED:", err);
-      });
+      .then((data) => setItems(data))
+      .catch((err) => console.error("GET ITEMS FAILED:", err));
   }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
 
-    if (!token) {
-      return;
-    }
+    if (!token) return;
 
     auth
       .checkToken(token)
