@@ -9,17 +9,13 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile }) {
   const { values, handleChange, errors, isValid, resetForm } = useForm();
 
   useEffect(() => {
-    if (isOpen && currentUser) {
-      resetForm(
-        {
-          name: currentUser.name || "",
-          avatar: currentUser.avatar || "",
-        },
-        {},
-        true // ✅ force valid state
-      );
-    }
-  }, [isOpen, currentUser, resetForm]);
+  if (isOpen && currentUser) {
+    resetForm({
+      name: currentUser.name || "",
+      avatar: currentUser.avatar || "",
+    });
+  }
+}, [isOpen, currentUser, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
