@@ -5,14 +5,19 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function EditProfileModal({ isOpen, onClose, onUpdateProfile }) {
   const currentUser = useContext(CurrentUserContext);
+
   const { values, handleChange, errors, isValid, resetForm } = useForm();
 
   useEffect(() => {
-    if (isOpen) {
-      resetForm({
-        name: currentUser.name || "",
-        avatar: currentUser.avatar || "",
-      });
+    if (isOpen && currentUser) {
+      resetForm(
+        {
+          name: currentUser.name || "",
+          avatar: currentUser.avatar || "",
+        },
+        {},
+        true // ✅ force valid state
+      );
     }
   }, [isOpen, currentUser, resetForm]);
 
