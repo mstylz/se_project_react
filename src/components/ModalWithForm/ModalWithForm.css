@@ -1,3 +1,5 @@
+/* BASE MODAL (ONLY PLACE WHERE .modal SHOULD EXIST) */
+
 .modal {
   position: fixed;
   inset: 0;
@@ -7,9 +9,7 @@
   align-items: center;
   visibility: hidden;
   opacity: 0;
-  transition:
-    visibility 0.3s ease,
-    opacity 0.3s ease;
+  transition: visibility 0.3s ease, opacity 0.3s ease;
   z-index: 1000;
 }
 
@@ -23,6 +23,7 @@
   opacity: 1;
 }
 
+/* CONTENT */
 .modal__content {
   background-color: #fff;
   position: relative;
@@ -34,6 +35,7 @@
   text-align: left;
 }
 
+/* TITLE */
 .modal__title {
   margin: 0 0 24px;
   font-size: 16px;
@@ -42,6 +44,7 @@
   color: #000;
 }
 
+/* CLOSE BUTTON */
 .modal-form__close-button {
   position: absolute;
   top: 20px;
@@ -60,6 +63,7 @@
   pointer-events: none;
 }
 
+/* FORM */
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -81,7 +85,6 @@
   border-bottom: 1px solid #000;
   padding: 8px 0 4px;
   font-size: 16px;
-  line-height: 20px;
   background: transparent;
   outline: none;
 }
@@ -89,35 +92,8 @@
 .modal__error {
   color: #ff4d00;
   font-size: 12px;
-  line-height: 16px;
   min-height: 16px;
   margin-top: 4px;
-}
-
-.modal__radio-buttons {
-  border: none;
-  padding: 0;
-  margin: 0 0 24px;
-}
-
-.modal__legend {
-  margin: 0 0 12px;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.modal__label_type_radio {
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 8px;
-  font-weight: 400;
-}
-
-.modal__radio-input {
-  width: 16px;
-  height: 16px;
-  margin: 0;
 }
 
 .modal__submit-button {
@@ -129,39 +105,10 @@
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
-  align-self: flex-start;
   padding: 0 20px;
 }
 
 .modal__submit-button:disabled {
-  background: #000;
   opacity: 0.3;
   cursor: default;
-}
-
-.modal__secondary-button {
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin-left: 12px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #000;
-  opacity: 0.5;
-  cursor: pointer;
-  align-self: flex-start;
-  position: relative;
-  top: -36px;
-  left: 86px;
-}
-
-@media (max-width: 480px) {
-  .modal__content {
-    max-width: calc(100% - 32px);
-    padding: 24px 20px;
-    border-radius: 16px;
-  }
-  .modal-form__close-button {
-    right: 20px;
-  }
 }
